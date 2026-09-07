@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kenkoflex-pwa-v1';
+const CACHE_NAME = 'kenkoflex-pwa-v2';
 const urlsToCache = [
 './index.html',
 './manifest.json',
