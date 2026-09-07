@@ -163,20 +163,17 @@
         </div>
 
         <div class="contact-card">
-            <h2>Entre em contato com o consultor:</h2>
+            <h2>Fale com o consultor no WhatsApp:</h2>
             <div class="contact-item" id="tel1Container">
-                📞 <a id="tel1Link" href="#">(66) 99939 -0173</a>
+                💬 <a id="tel1Link" href="#" target="_blank"></a>
             </div>
             <div class="contact-item" id="tel2Container" style="display: none;">
-                📞 <a id="tel2Link" href="#"></a>
+                💬 <a id="tel2Link" href="#" target="_blank"></a>
             </div>
             <div class="contact-item" style="margin-top: 20px;">
                 📸 Instagram: <br>
                 <a id="instaLink" href="https://instagram.com/kenkoflexcolchoes" target="_blank">@kenkoflexcolchoes</a>
             </div>
-            Desenvolvedor: Gilberto Moreira Itanhangá-MT 
-            Brasil
-            gilinbrazil@gmail.com 
         </div>
 
         <div class="btn-container">
@@ -190,7 +187,6 @@
     </div>
 
     <script>
-        // Lógica para ler os dados da URL do Vendedor
         const params = new URLSearchParams(window.location.search);
         
         const cidade = params.get('cidade');
@@ -204,27 +200,39 @@
         }
 
         if (tel1) {
-            document.getElementById('tel1Link').href = "tel:" + tel1.replace(/\D/g,'');
-            document.getElementById('tel1Link').innerText = tel1;
+            let numeroLimpo = decodeURIComponent(tel1).replace(/\D/g,'');
+            // Transforma automaticamente em link do WhatsApp e formata o texto visível (XX) XXXXX-XXXX
+            document.getElementById('tel1Link').href = "https://wa.me/55" + numeroLimpo;
+            
+            if (numeroLimpo.length === 11) {
+                document.getElementById('tel1Link').innerText = `(${numeroLimpo.substring(0,2)}) ${numeroLimpo.substring(2,7)}-${numeroLimpo.substring(7)}`;
+            } else {
+                document.getElementById('tel1Link').innerText = decodeURIComponent(tel1);
+            }
         }
 
         if (tel2) {
+            let numeroLimpo2 = decodeURIComponent(tel2).replace(/\D/g,'');
             document.getElementById('tel2Container').style.display = "block";
-            document.getElementById('tel2Link').href = "tel:" + tel2.replace(/\D/g,'');
-            document.getElementById('tel2Link').innerText = tel2;
+            document.getElementById('tel2Link').href = "https://wa.me/55" + numeroLimpo2;
+            
+            if (numeroLimpo2.length === 11) {
+                document.getElementById('tel2Link').innerText = `(${numeroLimpo2.substring(0,2)}) ${numeroLimpo2.substring(2,7)}-${numeroLimpo2.substring(7)}`;
+            } else {
+                document.getElementById('tel2Link').innerText = decodeURIComponent(tel2);
+            }
         }
 
         if (insta) {
-            let instaLimpo = insta.replace('@', '');
+            let instaLimpo = decodeURIComponent(insta).replace('@', '');
             document.getElementById('instaLink').href = "https://instagram.com/" + instaLimpo;
             document.getElementById('instaLink').innerText = "@" + instaLimpo;
         }
 
         if (foto) {
-            document.getElementById('imgPerfil').src = foto;
+            document.getElementById('imgPerfil').src = decodeURIComponent(foto);
         }
 
-        // Funções de Zoom
         function abrirZoom(elemento) {
             var modal = document.getElementById("zoomModal");
             var imgModal = document.getElementById("imgExpandida");
