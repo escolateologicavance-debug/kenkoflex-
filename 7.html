@@ -43,7 +43,7 @@ margin-bottom: 20px;
 text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-/* Imagem do Colchão */
+/* Estilo da Imagem com Zoom Interativo */
 .image-box {
 width: 100%;
 max-height: 450px;
@@ -52,6 +52,12 @@ border-radius: 15px;
 margin-bottom: 25px;
 border: 2px solid rgba(244, 211, 94, 0.3);
 box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+cursor: pointer;
+transition: transform 0.3s ease;
+}
+
+.image-box:hover {
+transform: scale(1.01);
 }
 
 .image-box img {
@@ -59,6 +65,30 @@ width: 100%;
 height: auto;
 display: block;
 object-fit: cover;
+transition: transform 0.3s ease;
+}
+
+/* Janela de Zoom (Modal em Tela Cheia) */
+.modal {
+display: none;
+position: fixed;
+z-index: 9999;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.9);
+justify-content: center;
+align-items: center;
+padding: 20px;
+cursor: zoom-out;
+}
+
+.modal img {
+max-width: 95%;
+max-height: 95vh;
+border-radius: 10px;
+box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
 }
 
 .contact-card {
@@ -119,6 +149,10 @@ background-color: #e9c46a;
 
 <div class="container">
 <h1>Fale Conosco</h1>
+
+<!-- Imagem com clique para expandir -->
+<div class="image-box" onclick="abrirZoom(this)">
+<img src="perfil-kenkoflex.png" alt="Conforto e Tecnologia Kenkoflex - Itanhangá MT">
 </div>
 
 <div class="contact-card">
@@ -130,20 +164,36 @@ background-color: #e9c46a;
 📞 <a href="tel:5562991119017">(62) 9 9111-9017</a>
 </div>
 <div class="contact-item" style="margin-top: 20px;">
-Acompanhe o nosso Instagram: <br>
+📸 Acompanhe o nosso Instagram: <br>
 <a href="https://instagram.com/kenkoflexcolchoes" target="_blank">@kenkoflexcolchoes</a>
 </div>
-  Desenvolvedor: Gilberto Moreira  Itanhangá-MT/BR
-</div>
-  
-  </div>
-   
 </div>
 
 <div class="btn-container">
 <a href="index.html" class="btn-back">← Voltar ao Início</a>
 </div>
 </div>
+
+<!-- Tela de Zoom Oculta -->
+<div id="zoomModal" class="modal" onclick="fecharZoom()">
+<img id="imgExpandida" src="" alt="Imagem Ampliada">
+</div>
+
+<script>
+function abrirZoom(elemento) {
+var modal = document.getElementById("zoomModal");
+var imgModal = document.getElementById("imgExpandida");
+var imgOriginal = elemento.querySelector("img");
+
+modal.style.display = "flex";
+imgModal.src = imgOriginal.src;
+}
+
+function fecharZoom() {
+var modal = document.getElementById("zoomModal");
+modal.style.display = "none";
+}
+</script>
 
 </body>
 </html>
