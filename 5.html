@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mais Disposição - Kenkoflex</title>
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+background: linear-gradient(135deg, #0d3b66, #001e3d);
+color: #ffffff;
+min-height: 100vh;
+padding: 15px;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.container {
+max-width: 800px;
+width: 100%;
+background: rgba(255, 255, 255, 0.05);
+border: 1px solid rgba(255, 255, 255, 0.12);
+backdrop-filter: blur(10px);
+padding: 25px;
+border-radius: 20px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+margin-top: 10px;
+margin-bottom: 30px;
+}
+
+h1 {
+color: #f4d35e;
+font-size: 1.8rem;
+text-align: center;
+margin-bottom: 15px;
+text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.highlight-box {
+background: rgba(244, 211, 94, 0.1);
+border-left: 5px solid #f4d35e;
+padding: 15px;
+border-radius: 0 12px 12px 0;
+margin: 20px 0;
+}
+
+.highlight-box h2 {
+color: #f4d35e;
+font-size: 1.2rem;
+margin-bottom: 8px;
+}
+
+p {
+font-size: 1.05rem;
+line-height: 1.7;
+margin-bottom: 15px;
+color: #e0e0e0;
+}
+
+/* Ícone Animado de Energia */
+.pulse-container {
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 25px 0;
+}
+
+.animated-icon {
+width: 90px;
+height: 90px;
+background: radial-gradient(circle, #f4d35e 0%, #d4a373 70%, #0d3b66 100%);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: 0 0 0 rgba(244, 211, 94, 0.6);
+animation: pulse-ring 2s infinite;
+}
+
+.animated-icon span {
+font-size: 40px;
+}
+
+@keyframes pulse-ring {
+0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7); }
+70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(244, 211, 94, 0); }
+100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 211, 94, 0); }
+}
+
+.benefit-list {
+margin: 20px 0 25px 20px;
+color: #e0e0e0;
+}
+
+.benefit-list li {
+margin-bottom: 12px;
+line-height: 1.6;
+font-size: 1.05rem;
+}
+
+.benefit-list strong {
+color: #f4d35e;
+}
+
+.btn-container {
+text-align: center;
+margin-top: 30px;
+}
+
+.btn-back {
+display: inline-block;
+background-color: #f4d35e;
+color: #0d3b66;
+font-weight: bold;
+padding: 12px 30px;
+border-radius: 30px;
+text-decoration: none;
+transition: transform 0.2s, background-color 0.2s;
+box-shadow: 0 4px 15px rgba(244, 211, 94, 0.4);
+}
+
+.btn-back:hover {
+transform: scale(1.05);
+background-color: #e9c46a;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>5. Mais Disposição</h1>
+
+<div class="pulse-container">
+<div class="animated-icon">
+<span>🔥</span>
+</div>
+</div>
+
+<div class="highlight-box">
+<h2>Acordar cansado não é normal: é o preço de um descanso falho!</h2>
+<p>Se você acorda com a sensação de que foi atropelado, com o corpo pesando e sem energia para encarar o dia, o seu leito atual está sugando a sua vitalidade em vez de recarregá-la.</p>
+</div>
+
+<p>O Colchão Terapêutico Kenkoflex foi desenvolvido para proporcionar conforto inteligente e alívio profundo das tensões musculares e dores nas costas, noite após noite; atuando como um poderoso antistressante, auxiliando no controle do cortisol, promovendo o relaxamento completo do corpo e garantindo um aumento significativo da qualidade de vida.</p>
+
+<p>Com a recuperação energética em nível celular proporcionada pelo sistema Kenkoflex, a sua rotina diária se transforma radicalmente:</p>
+
+<ul class="benefit-list">
+<li><strong>Despertar Revigorado:</strong> Diga adeus à exaustão matinal e levante-se com pique total logo no primeiro alarme.</li>
+<li><strong>Foco e Produtividade Máxima:</strong> Com o cérebro devidamente oxigenado e livre do esgotamento físico, sua clareza mental e concentração disparam.</li>
+<li><strong>Resistência Física:</strong> Menos dores e tensões significam um corpo leve e pronto para suportar as demandas e desafios do dia a dia com alta performance.</li>
+</ul>
+
+<div class="btn-container">
+<a href="index.html" class="btn-back">← Voltar ao Início</a>
+</div>
+</div>
+
+</body>
+</html>
