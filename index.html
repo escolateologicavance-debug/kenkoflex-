@@ -35,10 +35,10 @@
         }
 
         #globe-container {
-            width: 200px;
-            height: 200px;
+            width: 180px;
+            height: 180px;
             cursor: grab;
-            filter: drop-shadow(0px 10px 25px rgba(0, 0, 0, 0.6));
+            filter: drop-shadow(0px 8px 20px rgba(0, 0, 0, 0.5));
             margin-top: 10px;
         }
 
@@ -112,6 +112,45 @@
     </div>
 
     <script>
+        // Função para gerar dinamicamente a textura do globo (evita erro de arquivo externo no GitHub Pages)
+        function createGlobeTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 1024;
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+
+            // Fundo azul do globo
+            ctx.fillStyle = '#0f4c81';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Linhas de grade (meridianos e paralelos)
+            ctx.strokeStyle = '#1b6ca8';
+            ctx.lineWidth = 4;
+
+            for (let x = 0; x < canvas.width; x += 64) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, canvas.height);
+                ctx.stroke();
+            }
+
+            for (let y = 0; y < canvas.height; y += 64) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+                ctx.stroke();
+            }
+
+            // Texto "kenkoflex" centralizado na textura
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 90px Arial, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('kenkoflex', canvas.width / 2, canvas.height / 2);
+
+            return new THREE.CanvasTexture(canvas);
+        }
+
         // Configuração do Cenario 3D com Three.js
         const container = document.getElementById('globe-container');
         
@@ -124,40 +163,34 @@
         renderer.setPixelRatio(window.devicePixelRatio);
         container.appendChild(renderer.domElement);
 
-        // Luzes ajustadas para realçar o brilho metálico/esférico do logotipo
-        const ambientLight = new THREE.AmbientLight(0xffffff, 1.4);
+        // Luzes
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
         scene.add(ambientLight);
 
-        const pointLight = new THREE.DirectionalLight(0xffffff, 1.2);
+        const pointLight = new THREE.DirectionalLight(0xffffff, 1.5);
         pointLight.position.set(5, 3, 5);
         scene.add(pointLight);
 
-        // Criação da Esfera (Globo) perfeita
+        // Criação da Esfera (Globo)
         const geometry = new THREE.SphereGeometry(1, 64, 64);
-
-        // Carregando a textura mapeada fiel ao logotipo original
-        const textureLoader = new THREE.TextureLoader();
-        // Caso prefira usar o arquivo local, garanta que watermarked_img_979393035786885296.png está no repositório.
-        textureLoader.load('watermarked_img_979393035786885296.png', (texture) => {
-            const material = new THREE.MeshStandardMaterial({ 
-                map: texture,
-                roughness: 0.3,
-                metalness: 0.15
-            });
-            
-            const globe = new THREE.Mesh(geometry, material);
-            scene.add(globe);
-
-            // Animação contínua de rotação sobre o próprio eixo
-            function animate() {
-                requestAnimationFrame(animate);
-                globe.rotation.y += 0.006; // Velocidade suave e contínua
-                renderer.render(scene, camera);
-            }
-            animate();
-        }, undefined, (err) => {
-            console.error('Erro ao carregar a textura do globo:', err);
+        const texture = createGlobeTexture();
+        
+        const material = new THREE.MeshStandardMaterial({ 
+            map: texture,
+            roughness: 0.4,
+            metalness: 0.1
         });
+        
+        const globe = new THREE.Mesh(geometry, material);
+        scene.add(globe);
+
+        // Animação de rotação contínua sobre o próprio eixo
+        function animate() {
+            requestAnimationFrame(animate);
+            globe.rotation.y += 0.005;
+            renderer.render(scene, camera);
+        }
+        animate();
 
         // Responsividade ao redimensionar a tela
         window.addEventListener('resize', () => {
