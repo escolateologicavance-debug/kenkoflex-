@@ -3,7 +3,8 @@ const urlsToCache = [
 './index.html',
 './manifest.json',
 './logo-192.png',
-'./logo-512.png',
+'./logo-512.png'
+'./colchao-destaque.png',
 './watermarked_img_979393035786885296.png',
 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'
 ];
